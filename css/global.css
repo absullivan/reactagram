@@ -1,0 +1,161 @@
+* { box-sizing: border-box }
+
+a { color: #4090DB; text-decoration: none; }
+a:hover { color: #2D6599; text-decoration: none; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.4rem;
+  background-color: #FAFAFA;
+  font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.application {
+  margin: 0 auto;
+  padding: 20px;
+  min-width: 320px;
+  max-width: 1080px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 0.15rem solid black;
+}
+
+.avatar--small {
+  width: 60px;
+  height: 60px;
+}
+
+.avatar--large {
+  width: 250px;
+  height: 250px;
+}
+
+
+.standard-button {
+  color: #4090DB;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: normal;
+  vertical-align: middle;
+  background: transparent;
+  border-radius: 8px;
+  border: 0.15rem solid #4090DB;
+}
+
+.standard-button:hover {
+  color: #2D6599;
+  border-color: #2D6599;
+}
+
+.standard-button--round {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal__background {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: orange;
+}
+
+.modal__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.gallery__item {
+  width: 33.33%;
+  padding: 10px;
+}
+
+.gallery__item img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+
+.biography {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.biography__avatar {
+  padding-right: 20px;
+}
+
+.biography__details {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.biography__details__username {
+  display: inline-block;
+  margin: 10px 0;
+  padding-right: 20px;
+}
+
+.biography__details__description {
+  margin: 10px 0;
+}
+
+
+.mini-bio {
+  display: flex;
+  align-items: center;
+}
+
+.mini-bio__avatar {
+  padding-right: 10px;
+}
+
+.mini-bio__username {
+  flex: 1;
+  padding-right: 15px;
+}
+
+.mini-bio__username__header {
+  margin: 0;
+  font-size: 1rem;
+}
+
+
+.load-more {
+  margin-top: 30px;
+  text-align: center;
+}

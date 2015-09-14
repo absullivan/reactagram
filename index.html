@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reactagram!</title>
+
+    <script src="build/react.js"></script>
+    <script src="build/JSXTransformer.js"></script>
+    <script src="node_modules/classnames/index.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="css/global.css">
+
+    <script>
+
+      var userProfile = {
+        id: 1,
+        firstname: 'Enda',
+        lastname: 'Quigley',
+        username: 'endaquigley',
+        avatar: 'images/avatar.jpg',
+        description: 'Full Stack Developer, Dublin'
+      };
+
+      var instagramUrl = 'https://api.instagram.com/v1/tags/cat/media/recent?client_id=2617d61fbb324a40803930764e8dfb69&count=9';
+
+      function replaceUrlParam(url, paramName, paramValue) {
+        var pattern = new RegExp('('+paramName+'=).*?(&|$)');
+        var newUrl = url;
+        if (url.search(pattern)>=0) {
+          newUrl = url.replace(pattern,'$1' + paramValue + '$2');
+        } else {
+          newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
+        }
+        return newUrl;
+      };
+
+    </script>
+
+  </head>
+  <body>
+
+    <script type="text/jsx">
+
+      var App = React.createClass({
+        getInitialState: function() {
+          return {
+            userProfile: userProfile,
+            following: JSON.parse(localStorage.getItem('following')) || false,
+          }
+        },
+        toggleFollow: function() {
+          var updatedState = !this.state.following;
+          this.setState({following: updatedState});
+          localStorage.setItem('following', updatedState);
+        },
+        render: function() {
+          return (
+            <div className="application">
+              <Biography profile={this.state.userProfile} following={this.state.following} toggleFollow={this.toggleFollow} />
+              <Gallery />
+              <ModalDialog id="image-viewer">
+                <MiniBiography profile={this.state.userProfile} following={this.state.following} toggleFollow={this.toggleFollow} />
+                <Image src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s640x640/sh0.08/e35/11910210_513140118855138_977323818_n.jpg" />
+              </ModalDialog>
+            </div>
+          );
+        }
+      });
+
+
+      var Button = React.createClass({
+        propTypes: {
+          onClick: React.PropTypes.func.isRequired,
+          type: React.PropTypes.oneOf(['normal', 'round'])
+        },
+        getDefaultProps: function() {
+          return {
+            type: 'normal'
+          }
+        },
+        render: function() {
+          var classes = classNames('standard-button',
+            { 'standard-button--round' : this.props.type === 'round' }
+          );
+          return (
+            <input type="button" className={classes} value={this.props.text} onClick={this.props.onClick} />
+          );
+        }
+      });
+
+
+      var FollowButton = React.createClass({
+        propTypes: {
+          onClick: React.PropTypes.func.isRequired,
+          following: React.PropTypes.bool.isRequired
+        },
+        enda: function() {
+          alert('follow button');
+        },
+        render: function() {
+          return (
+            <Button text={this.props.following ? 'Unfollow' : 'Follow'} onClick={this.props.onClick} />
+          )
+        }
+      });
+
+
+      var Avatar = React.createClass({
+        propTypes: {
+          src: React.PropTypes.string.isRequired,
+          size: React.PropTypes.oneOf(['small', 'medium', 'large'])
+        },
+        getDefaultProps: function() {
+          return {
+            size: 'medium'
+          };
+        },
+        render: function() {
+          var classes = classNames('avatar',
+            {'avatar--small': this.props.size === 'small'},
+            {'avatar--large': this.props.size === 'large'}
+          );
+          return (
+            <img className={classes} src={this.props.src} />
+          );
+        }
+      });
+
+
+      var Biography = React.createClass({
+        propTypes: {
+          profile: React.PropTypes.object.isRequired,
+          following: React.PropTypes.bool.isRequired
+        },
+        render: function() {
+          return (
+            <div className="biography">
+              <div className="biography__avatar">
+                <Avatar src={this.props.profile.avatar} />
+              </div>
+              <div className="biography__details">
+                <div>
+                  <h2 className="biography__details__username">{this.props.profile.username}</h2>
+                  <FollowButton following={this.props.following} onClick={this.props.toggleFollow} />
+                  <p className="biography__details__description">
+                    <strong>{this.props.profile.firstname} {this.props.profile.lastname}</strong> - {this.props.profile.description} - <a href="https://www.endaquigley.com" target="_blank">www.endaquigley.com</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
+      });
+
+
+      var MiniBiography = React.createClass({
+        propTypes: {
+          profile: React.PropTypes.object.isRequired,
+          following: React.PropTypes.bool.isRequired
+        },
+        render: function() {
+          return (
+            <div className="mini-bio">
+              <div className="mini-bio__avatar">
+                <Avatar size="small" src={this.props.profile.avatar} />
+              </div>
+              <div className="mini-bio__username">
+                <a href="#">
+                  <h2 className="mini-bio__username__header">{this.props.profile.username}</h2>
+                </a>
+              </div>
+              <div className="mini-bio__action">
+                <FollowButton following={this.props.following} onClick={this.props.toggleFollow} />
+              </div>
+            </div>
+          );
+        }
+      });
+
+
+      var Image = React.createClass({
+        propTypes: {
+          src: React.PropTypes.string.isRequired
+        },
+        render: function() {
+          return (
+            <img className="---" src={this.props.src} />
+          );
+        }
+      });
+
+
+      var Gallery = React.createClass({
+        getInitialState: function() {
+          return {
+            media: [],
+            pagination: {}
+          }
+        },
+        componentDidMount: function() {
+          this.fetchData(this, instagramUrl);
+        },
+        fetchData: function(component, url) {
+          // convert URL to JSONP format...
+          url = replaceUrlParam(url, 'callback', '?');
+          var currentMedia = this.state.media;
+
+          $.getJSON(url, function(result) {
+            result.data.forEach(function(item) {
+              currentMedia.push(item);
+            });
+            component.setState({
+              media: currentMedia,
+              pagination: result.pagination
+            });
+          });
+        },
+        loadMore: function() {
+          var nextUrl = this.state.pagination.next_url;
+          if (nextUrl) {
+            this.fetchData(this, nextUrl);
+          }
+        },
+        render: function() {
+          var mediaElements = this.state.media.map(function(item) {
+            return (
+              <div key={item.id} className="gallery__item">
+                <a href={item.images.standard_resolution.url} target="_blank">
+                  <Image src={item.images.standard_resolution.url} />
+                </a>
+              </div>
+            );
+          });
+
+          if (this.state.media.length > 0) {
+            return (
+              <div>
+                <div className="gallery">
+                  {mediaElements}
+                </div>
+                <div className="load-more">
+                  <Button type="round" text="Load More" onClick={this.loadMore}/>
+                </div>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        }
+      });
+
+
+      var ModalDialog = React.createClass({
+        propTypes: {
+          id: React.PropTypes.string.isRequired
+        },
+        render: function() {
+          return (
+            <div id={this.props.id} className="modal">
+              <div className="modal__background"></div>
+              <div className="modal__content">
+                {this.props.children}
+              </div>
+            </div>
+          );
+        }
+      });
+
+
+      React.render(<App />, document.body);
+
+    </script>
+
+  </body>
+</html>
