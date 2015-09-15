@@ -54,7 +54,7 @@
         },
         toggleFollow: function() {
           var updatedState = !this.state.following;
-          this.setState({following: updatedState});
+          this.setState({ following: updatedState });
           localStorage.setItem('following', updatedState);
         },
         render: function() {
@@ -196,24 +196,28 @@
         getInitialState: function() {
           return {
             media: [],
-            pagination: {}
+            pagination: {},
+            loading: false
           }
         },
         componentDidMount: function() {
-          this.fetchData(this, instagramUrl);
+          this.fetchData(instagramUrl);
         },
-        fetchData: function(component, url) {
+        fetchData: function(url) {
+          this.setState({ loading: true });
           var currentMedia = this.state.media;
 
           // convert URL to JSONP format...
           url = replaceUrlParam(url, 'count', '9');
           url = replaceUrlParam(url, 'callback', '?');
 
+          var component = this;
           $.getJSON(url, function(result) {
             result.data.forEach(function(item) {
               currentMedia.push(item);
             });
             component.setState({
+              loading: false,
               media: currentMedia,
               pagination: result.pagination
             });
@@ -222,7 +226,7 @@
         loadMore: function() {
           var nextUrl = this.state.pagination.next_url;
           if (nextUrl) {
-            this.fetchData(this, nextUrl);
+            this.fetchData(nextUrl);
           }
         },
         render: function() {
@@ -238,7 +242,13 @@
             });
 
             var loadMoreElement = null;
-            if (this.state.pagination.next_url) {
+            if (this.state.loading === true) {
+              loadMoreElement = (
+                <div className="load-more">
+                  <Button type="round" text="Loading..." disabled="disabled" />
+                </div>
+              );
+            } else if (this.state.pagination.next_url) {
               loadMoreElement = (
                 <div className="load-more">
                   <Button type="round" text="Load More" onClick={this.loadMore} />
