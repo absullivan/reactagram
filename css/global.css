@@ -126,6 +126,7 @@ html {
 
 .biography {
   display: flex;
+  align-items: center;
   margin-bottom: 30px;
 }
 
@@ -135,8 +136,6 @@ html {
 
 .biography__details {
   flex: 1;
-  display: flex;
-  align-items: center;
 }
 
 .biography__details__username {

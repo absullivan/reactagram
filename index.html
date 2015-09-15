@@ -142,13 +142,11 @@
                 <Avatar src={this.props.profile.avatar} />
               </div>
               <div className="biography__details">
-                <div>
-                  <h2 className="biography__details__username">{this.props.profile.username}</h2>
-                  <FollowButton following={this.props.following} onClick={this.props.toggleFollow} />
-                  <p className="biography__details__description">
-                    <strong>{this.props.profile.firstname} {this.props.profile.lastname}</strong> - {this.props.profile.description} - <a href="https://www.endaquigley.com" target="_blank">www.endaquigley.com</a>
-                  </p>
-                </div>
+                <h2 className="biography__details__username">{this.props.profile.username}</h2>
+                <FollowButton following={this.props.following} onClick={this.props.toggleFollow} />
+                <p className="biography__details__description">
+                  <strong>{this.props.profile.firstname} {this.props.profile.lastname}</strong> - {this.props.profile.description} - <a href="https://www.endaquigley.com" target="_blank">www.endaquigley.com</a>
+                </p>
               </div>
             </div>
           );
