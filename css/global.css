@@ -59,6 +59,10 @@ html {
   border-color: #2D6599;
 }
 
+.standard-button:focus {
+  outline: none;
+}
+
 .standard-button--round {
   height: 8rem;
   width: 8rem;
@@ -102,9 +106,19 @@ html {
   padding: 10px;
 }
 
-.gallery__item img {
+.square-image {
+  position: relative;
   width: 100%;
-  max-width: 100%;
+  padding-top: 100%;
+  background: #EDEEEE;
+}
+
+.square-image__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
