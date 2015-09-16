@@ -19,7 +19,7 @@ html {
   margin: 0 auto;
   padding: 20px;
   min-width: 320px;
-  max-width: 1080px;
+  max-width: 960px;
 }
 
 .avatar {
@@ -96,15 +96,38 @@ html {
 
 
 .gallery {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gallery__items {
   display: flex;
   flex-wrap: wrap;
   margin: -10px;
+  margin-bottom: 20px;
 }
 
 .gallery__item {
   width: 33.33%;
   padding: 10px;
+  -webkit-animation: FadeIn 0.4s ease-in;
+  -webkit-animation-fill-mode: both;
 }
+
+@-webkit-keyframes FadeIn {
+  0% { opacity: 0; -webkit-transform: scale(.1); }
+  100% { opacity: 1; -webkit-transform: scale(1); }
+}
+
+.gallery__item:nth-child(9n+1) { -webkit-animation-delay: 0.1s }
+.gallery__item:nth-child(9n+2) { -webkit-animation-delay: 0.2s }
+.gallery__item:nth-child(9n+3) { -webkit-animation-delay: 0.3s }
+.gallery__item:nth-child(9n+4) { -webkit-animation-delay: 0.4s }
+.gallery__item:nth-child(9n+5) { -webkit-animation-delay: 0.5s }
+.gallery__item:nth-child(9n+6) { -webkit-animation-delay: 0.6s }
+.gallery__item:nth-child(9n+7) { -webkit-animation-delay: 0.7s }
+.gallery__item:nth-child(9n+8) { -webkit-animation-delay: 0.8s }
+.gallery__item:nth-child(9n+9) { -webkit-animation-delay: 0.9s }
 
 .square-image {
   position: relative;
@@ -127,7 +150,7 @@ html {
 .biography {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .biography__avatar {
@@ -169,7 +192,8 @@ html {
 }
 
 
-.load-more {
-  margin-top: 30px;
+.footer {
+  margin: 0;
+  margin-bottom: 20px;
   text-align: center;
 }

@@ -66,6 +66,7 @@
                 <MiniBiography profile={this.state.userProfile} following={this.state.following} toggleFollow={this.toggleFollow} />
                 <SquareImage src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s640x640/sh0.08/e35/11910210_513140118855138_977323818_n.jpg" />
               </ModalDialog>
+              <p className="footer">Developed by <a href="https://twitter.com/endaquigley" target="_blank">Enda Quigley</a></p>
             </div>
           );
         }
@@ -244,21 +245,17 @@
             var loadMoreElement = null;
             if (this.state.loading === true) {
               loadMoreElement = (
-                <div className="load-more">
-                  <Button type="round" text="Loading..." disabled="disabled" />
-                </div>
+                <Button type="round" text="Loading..." disabled="disabled" />
               );
             } else if (this.state.pagination.next_url) {
               loadMoreElement = (
-                <div className="load-more">
-                  <Button type="round" text="Load More" onClick={this.loadMore} />
-                </div>
+                <Button type="round" text="Load More" onClick={this.loadMore} />
               );
             };
 
             return (
-              <div>
-                <div className="gallery">
+              <div className="gallery">
+                <div className="gallery__items">
                   {mediaElements}
                 </div>
                 {loadMoreElement}
