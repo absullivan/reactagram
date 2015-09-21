@@ -12,7 +12,7 @@ var userProfile = {
   description: 'Full Stack Developer, Dublin'
 };
 
-var instagramUrl = 'https://api.instagram.com/v1/tags/strata3/media/recent';
+var instagramUrl = 'https://api.instagram.com/v1/tags/dogs/media/recent';
 instagramUrl = replaceUrlParam(instagramUrl, 'client_id', '2617d61fbb324a40803930764e8dfb69');
 
 function replaceUrlParam(url, paramName, paramValue) {

@@ -1,5 +1,7 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var autoprefixer = require('gulp-autoprefixer');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var source = require('vinyl-source-stream');
@@ -15,15 +17,24 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('build/js'));
 });
 
+gulp.task('sass', function () {
+  gulp.src('./src/css/**/*.scss')
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }).on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 5 versions']
+    }))
+    .pipe(gulp.dest('build/css'));
+});
+
 gulp.task('copy', function() {
   gulp.src('src/index.html')
     .pipe(gulp.dest('build'));
   gulp.src('src/images/**/*.*')
     .pipe(gulp.dest('build/images'));
-  gulp.src('src/css/**/*.*')
-    .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('default',['browserify', 'copy'], function() {
-  return gulp.watch('src/**/*.*', ['browserify', 'copy']);
+gulp.task('default',['browserify', 'sass', 'copy'], function() {
+  return gulp.watch('src/**/*.*', ['browserify', 'sass', 'copy']);
 });

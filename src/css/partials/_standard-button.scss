@@ -1,0 +1,27 @@
+.standard-button {
+  color: #4090DB;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: normal;
+  vertical-align: middle;
+  background: transparent;
+  border-radius: 8px;
+  border: 0.15rem solid #4090DB;
+}
+
+.standard-button:hover {
+  color: #2D6599;
+  border-color: #2D6599;
+}
+
+.standard-button:focus {
+  outline: none;
+}
+
+.standard-button--round {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+}

@@ -1,0 +1,16 @@
+.square-image {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  background: #EDEEEE;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.square-image__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

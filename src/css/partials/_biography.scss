@@ -1,0 +1,42 @@
+.biography {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.biography__avatar {
+  padding-right: 20px;
+}
+
+.biography__details {
+  flex: 1;
+}
+
+.biography__details__username {
+  display: inline-block;
+  margin: 10px 0;
+  padding-right: 20px;
+}
+
+.biography__details__description {
+  margin: 10px 0;
+}
+
+.mini-bio {
+  display: flex;
+  align-items: center;
+}
+
+.mini-bio__avatar {
+  padding-right: 10px;
+}
+
+.mini-bio__username {
+  flex: 1;
+  padding-right: 15px;
+}
+
+.mini-bio__username__header {
+  margin: 0;
+  font-size: 1rem;
+}
