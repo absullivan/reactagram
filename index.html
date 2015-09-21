@@ -9,7 +9,7 @@
     <script src="build/react.js"></script>
     <script src="build/JSXTransformer.js"></script>
     <script src="node_modules/classnames/index.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/reqwest/reqwest.min.js"></script>
 
     <link rel="stylesheet" href="css/global.css">
 
@@ -75,7 +75,7 @@
 
       var Button = React.createClass({
         propTypes: {
-          onClick: React.PropTypes.func.isRequired,
+          onClick: React.PropTypes.func,
           type: React.PropTypes.oneOf(['normal', 'round'])
         },
         getDefaultProps: function() {
@@ -213,15 +213,19 @@
           url = replaceUrlParam(url, 'callback', '?');
 
           var component = this;
-          $.getJSON(url, function(result) {
-            result.data.forEach(function(item) {
-              currentMedia.push(item);
-            });
-            component.setState({
-              loading: false,
-              media: currentMedia,
-              pagination: result.pagination
-            });
+          reqwest({
+            url: url,
+            type: 'jsonp',
+            success: function(response) {
+              response.data.forEach(function(item) {
+                currentMedia.push(item);
+              });
+              component.setState({
+                loading: false,
+                media: currentMedia,
+                pagination: response.pagination
+              });
+            }
           });
         },
         loadMore: function() {
