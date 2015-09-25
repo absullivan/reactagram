@@ -1,6 +1,6 @@
-var React = require('react');
-var reqwest = require('reqwest');
-var classNames = require('classnames');
+import React from 'react';
+import reqwest from 'reqwest';
+import classNames from 'classnames';
 
 
 var userProfile = {

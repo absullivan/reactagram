@@ -3,13 +3,13 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var autoprefixer = require('gulp-autoprefixer');
 var browserify = require('browserify');
-var reactify = require('reactify');
+var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
 gulp.task('browserify', function() {
   browserify('./src/js/application.js')
-    .transform('reactify')
+    .transform(babelify)
     .bundle()
     .pipe(source('application.js'))
     .pipe(buffer())
