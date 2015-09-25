@@ -81,9 +81,6 @@ var FollowButton = React.createClass({
     onClick: React.PropTypes.func.isRequired,
     following: React.PropTypes.bool.isRequired
   },
-  enda: function() {
-    alert('follow button');
-  },
   render: function() {
     return (
       <Button text={this.props.following ? 'Unfollow' : 'Follow'} onClick={this.props.onClick} />
