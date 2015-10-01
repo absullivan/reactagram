@@ -16,7 +16,7 @@ function replaceUrlParam(url, paramName, paramValue) {
   return newUrl;
 };
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
       media: [],

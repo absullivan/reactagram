@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './button';
 
-module.exports = React.createClass({
+export default React.createClass({
   propTypes: {
     onClick: React.PropTypes.func.isRequired,
     following: React.PropTypes.bool.isRequired

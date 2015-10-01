@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-module.exports = React.createClass({
+export default React.createClass({
   propTypes: {
     onClick: React.PropTypes.func,
     type: React.PropTypes.oneOf(['normal', 'round'])
@@ -12,7 +12,7 @@ module.exports = React.createClass({
     }
   },
   render: function() {
-    const classes = classNames('standard-button',
+    var classes = classNames('standard-button',
       { 'standard-button--round' : this.props.type === 'round' }
     );
     return (

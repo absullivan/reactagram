@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from './avatar';
 import FollowButton from './follow-button';
 
-module.exports = React.createClass({
+export default React.createClass({
   propTypes: {
     profile: React.PropTypes.object.isRequired,
     following: React.PropTypes.bool.isRequired
