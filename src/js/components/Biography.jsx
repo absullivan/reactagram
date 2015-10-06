@@ -43,6 +43,7 @@ export default React.createClass({
         <div className="biography__details">
           <h2 className="biography__details__username">{username}</h2>
           <FollowButton following={isFollowing} onClick={this.toggleFollow} />
+          <p className="biography__details__description">React / Flux application using the Instagram API</p>
           <p className="biography__details__description">
             <strong>{firstname} {lastname}</strong> - {description} - <a href="https://www.endaquigley.com" target="_blank">www.endaquigley.com</a>
           </p>
