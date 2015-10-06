@@ -1,7 +1,7 @@
 {
   "name": "reactagram",
   "version": "1.0.0",
-  "description": "React / Flux app using the Instagram API",
+  "description": "React / Flux application using the Instagram API",
   "author": "",
   "license": "MIT",
   "devDependencies": {
