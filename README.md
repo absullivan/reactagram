@@ -1,5 +1,5 @@
 
-# Reactagram (reactagram)
+# Reactagram
 
 > React / Flux app using the Instagram API
 
