@@ -6,11 +6,13 @@ export default React.createClass({
     src: React.PropTypes.string.isRequired,
     size: React.PropTypes.oneOf(['small', 'medium', 'large'])
   },
+  
   getDefaultProps: function() {
     return {
       size: 'medium'
     };
   },
+
   render: function() {
     const classes = classNames('avatar',
       {'avatar--small': this.props.size === 'small'},

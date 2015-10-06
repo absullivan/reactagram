@@ -1,40 +1,16 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
-var autoprefixer = require('gulp-autoprefixer');
-var browserify = require('browserify');
-var babelify = require('babelify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
+/*
+  gulpfile.js
+  ===========
+  NOTE: adapted from github.com/greypants/gulp-starter
+  Rather than manage one giant configuration file responsible
+  for creating multiple tasks, each task has been broken out into
+  its own file in gulp/tasks. Any files in that directory get
+  automatically required below.
+  To add a new task, simply add a new task file that directory.
+  gulp/tasks/default.js specifies the default set of tasks to run
+  when you run `gulp`.
+*/
+var requireDir = require('require-dir');
 
-gulp.task('browserify', function() {
-  browserify('./src/js/application.js')
-    .transform(babelify)
-    .bundle()
-    .pipe(source('application.js'))
-    .pipe(buffer())
-    .pipe(uglify())
-    .pipe(gulp.dest('build/js'));
-});
-
-gulp.task('sass', function () {
-  gulp.src('./src/css/**/*.scss')
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }).on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 5 versions']
-    }))
-    .pipe(gulp.dest('build/css'));
-});
-
-gulp.task('copy', function() {
-  gulp.src('src/index.html')
-    .pipe(gulp.dest('build'));
-  gulp.src('src/images/**/*.*')
-    .pipe(gulp.dest('build/images'));
-});
-
-gulp.task('default',['browserify', 'sass', 'copy'], function() {
-  return gulp.watch('src/**/*.*', ['browserify', 'sass', 'copy']);
-});
+// Require all tasks in gulp/tasks, including subfolders
+requireDir('./gulp/tasks', { recurse: true });
