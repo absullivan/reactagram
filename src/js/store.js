@@ -7,9 +7,9 @@ const userDefaults = {
     lastname: 'Quigley',
     username: 'endaquigley',
     avatar: 'images/avatar.jpg',
-    description: 'Full Stack Developer, Dublin'
+    description: 'Javascript / UI Developer, Dublin'
   },
-  isFollowing: false
+  isFollowing: JSON.parse(localStorage.getItem('following')) || false
 }
 
 const user = (state = userDefaults, action) => {
@@ -18,7 +18,11 @@ const user = (state = userDefaults, action) => {
 
     case 'TOGGLE_FOLLOW':
 
-      state.isFollowing = !state.isFollowing;
+      const toggleFollow = JSON.parse(!state.isFollowing);
+
+      localStorage.setItem('following', toggleFollow);
+      state.isFollowing = toggleFollow;
+
       return state;
 
     default: return state;
