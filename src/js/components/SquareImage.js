@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class SquareImage extends Component {
 
@@ -13,7 +13,7 @@ class SquareImage extends Component {
 }
 
 SquareImage.propTypes = {
-  src: React.PropTypes.string.isRequired
+  src: PropTypes.string.isRequired
 };
 
 export default SquareImage;

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
 class Button extends Component {
-  
+
   render() {
     const classes = classNames('standard-button',
       { 'standard-button--round' : this.props.type === 'round' }
@@ -15,8 +15,8 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  onClick: React.PropTypes.func,
-  text: React.PropTypes.string.isRequired
+  onClick: PropTypes.func,
+  text: PropTypes.string.isRequired
 };
 
 Button.defaultProps = {
