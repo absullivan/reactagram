@@ -1,7 +1,7 @@
 {
   "name": "reactagram",
-  "version": "1.0.0",
-  "description": "React / Flux application using the Instagram API",
+  "version": "1.2.0",
+  "description": "React / Redux application using the Instagram API",
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -41,11 +41,9 @@
     "classnames": "^2.1.5",
     "eslint": "^1.6.0",
     "eslint-plugin-react": "^3.5.1",
-    "flux": "^2.1.1",
-    "keymirror": "^0.1.1",
-    "object-assign": "^4.0.1",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "reqwest": "^2.0.4"
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
   }
 }
