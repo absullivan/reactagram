@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import { h, Component } from 'preact';
 import classNames from 'classnames';
+import '../css/avatar.css';
 
+/** @jsx h */
 class Avatar extends Component {
 
   render() {
@@ -9,16 +11,11 @@ class Avatar extends Component {
       { 'avatar--large': this.props.size === 'large' }
     );
     return (
-      <img className={ classes } src={ this.props.src } />
+      <img className={ classes } src={ this.props.src } alt="avatar" />
     );
   }
 
 }
-
-Avatar.propTypes = {
-  src: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
-};
 
 Avatar.defaultProps = {
   size: 'medium'

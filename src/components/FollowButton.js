@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import { h, Component } from 'preact';
 import Button from './Button';
 
+/** @jsx h */
 class FollowButton extends Component {
 
   render() {
@@ -9,11 +10,6 @@ class FollowButton extends Component {
     )
   }
 
-}
-
-FollowButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  following: PropTypes.bool.isRequired
 }
 
 export default FollowButton;

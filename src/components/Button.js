@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import { h, Component } from 'preact';
 import classNames from 'classnames';
+import '../css/standard-button.css';
 
+/** @jsx h */
 class Button extends Component {
 
   render() {
@@ -13,11 +15,6 @@ class Button extends Component {
   }
 
 }
-
-Button.propTypes = {
-  onClick: PropTypes.func,
-  text: PropTypes.string.isRequired
-};
 
 Button.defaultProps = {
   type: 'normal'

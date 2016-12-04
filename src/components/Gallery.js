@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
+import { h, Component } from 'preact';
+import { connect } from 'preact-redux';
 import Button from './Button';
 import SquareImage from './SquareImage';
+import '../css/gallery.css';
 
+/** @jsx h */
 class Gallery extends Component {
 
   loadMore() {
-    this.props.store.dispatch({
+    this.props.dispatch({
       type: 'LOAD_MORE'
     });
   }
 
   render() {
 
-    const state = this.props.store.getState();
-    const { images } = state.gallery;
+    const { images } = this.props.gallery;
 
-    const mediaElements = images.map(function(item) {
+    const mediaElements = images.map(function(item, index) {
       return (
-        <div key={ item.id } className="gallery__item">
+        <div key={ index } className="gallery__item">
           <a href={ item.url } target="_blank">
             <SquareImage src={ item.url } />
           </a>
@@ -38,4 +40,10 @@ class Gallery extends Component {
 
 }
 
-export default Gallery;
+function mapStateToProps(state) {
+  return {
+    gallery: state.gallery
+  }
+}
+
+export default connect(mapStateToProps)(Gallery);

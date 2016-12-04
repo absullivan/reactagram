@@ -7,7 +7,7 @@ const userDefaults = {
     lastname: 'Quigley',
     username: 'endaquigley',
     avatar: 'images/avatar.jpg',
-    description: 'Javascript / UI Developer, Dublin'
+    description: 'Frontend / UI Developer, Dublin'
   },
   isFollowing: JSON.parse(localStorage.getItem('following')) || false
 }
@@ -19,11 +19,11 @@ const user = (state = userDefaults, action) => {
     case 'TOGGLE_FOLLOW':
 
       const toggleFollow = JSON.parse(!state.isFollowing);
-
       localStorage.setItem('following', toggleFollow);
-      state.isFollowing = toggleFollow;
 
-      return state;
+      return Object.assign({}, state, {
+        isFollowing: toggleFollow
+      });
 
     default: return state;
 
@@ -33,15 +33,15 @@ const user = (state = userDefaults, action) => {
 
 const galleryDefaults = {
   images: [
-    { id: 0, url: 'images/avatar.jpg' },
-    { id: 1, url: 'images/avatar.jpg' },
-    { id: 2, url: 'images/avatar.jpg' },
-    { id: 3, url: 'images/avatar.jpg' },
-    { id: 4, url: 'images/avatar.jpg' },
-    { id: 5, url: 'images/avatar.jpg' },
-    { id: 6, url: 'images/avatar.jpg' },
-    { id: 7, url: 'images/avatar.jpg' },
-    { id: 8, url: 'images/avatar.jpg' }
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' },
+    { url: 'images/avatar.jpg' }
   ]
 }
 
@@ -50,15 +50,13 @@ const gallery = (state = galleryDefaults, action) => {
   switch (action.type) {
 
     case 'LOAD_MORE':
-
-      for (let i = 0; i < 9; i++) {
-        state.images = [...state.images, {
-          id: state.images.length,
-          url: 'images/avatar.jpg'
-        }];
-      }
-
-      return state;
+    
+      return Object.assign({}, state, {
+        images: [
+          ...state.images,
+          ...galleryDefaults.images
+        ]
+      });
 
     default: return state;
 

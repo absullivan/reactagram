@@ -1,19 +1,11 @@
-
 # Reactagram
 
-> React / Redux application using the Instagram API
+> Preact / Redux application using the Instagram API
 
 https://www.endaquigley.com/sandbox/reactagram
 
-## Running your project
+## Getting Started
 
-The generated project includes a live-reloading static server on port `8080` (you can change the port in the `gulpfile.js` config), which will build, launch, and rebuild the app whenever you change application code. To start the server, run:
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-```bash
-$ npm start
-```
-
-If you prefer to just build without the live reload and build-on-each-change watcher, run:
-
-```bash
-$ npm run build
+You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
