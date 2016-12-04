@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
-import Gallery from './Gallery';
 import Biography from './Biography';
+import Gallery from './Gallery';
+import Footer from './Footer';
 
 /** @jsx h */
 class Application extends Component {
@@ -10,10 +11,7 @@ class Application extends Component {
       <div className="application">
         <Biography />
         <Gallery />
-        <p className="footer">
-          Developed by <a href="https://twitter.com/endaquigley" target="_blank">Enda Quigley</a>,
-          code available on <a href="https://github.com/endaquigley/reactagram" target="_blank">GitHub</a>
-        </p>
+        <Footer />
       </div>
     );
   }

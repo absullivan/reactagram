@@ -9,7 +9,7 @@ const userDefaults = {
     avatar: 'images/avatar.jpg',
     description: 'Frontend / UI Developer, Dublin'
   },
-  isFollowing: JSON.parse(localStorage.getItem('following')) || false
+  isFollowing: (window.localStorage ? (localStorage.getItem('following') || false) : false)
 }
 
 const user = (state = userDefaults, action) => {
@@ -19,7 +19,10 @@ const user = (state = userDefaults, action) => {
     case 'TOGGLE_FOLLOW':
 
       const toggleFollow = JSON.parse(!state.isFollowing);
-      localStorage.setItem('following', toggleFollow);
+
+      if (window.localStorage) {
+        localStorage.setItem('following', toggleFollow);
+      }
 
       return Object.assign({}, state, {
         isFollowing: toggleFollow
@@ -50,7 +53,7 @@ const gallery = (state = galleryDefaults, action) => {
   switch (action.type) {
 
     case 'LOAD_MORE':
-    
+
       return Object.assign({}, state, {
         images: [
           ...state.images,
