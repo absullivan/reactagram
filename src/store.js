@@ -9,7 +9,7 @@ const userDefaults = {
     avatar: 'images/avatar.jpg',
     description: 'Frontend / UI Developer, Dublin'
   },
-  isFollowing: (window.localStorage ? (localStorage.getItem('following') || false) : false)
+  isFollowing: (window.localStorage ? (JSON.parse(localStorage.getItem('following')) || false) : false)
 }
 
 const user = (state = userDefaults, action) => {
