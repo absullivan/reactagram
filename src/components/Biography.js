@@ -1,18 +1,12 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+import { toggleFollow } from '../actions';
 import Avatar from './Avatar';
 import FollowButton from './FollowButton';
 import '../css/biography.css';
 
 /** @jsx h */
 class Biography extends Component {
-
-  toggleFollow() {
-    this.props.dispatch({
-      type: 'TOGGLE_FOLLOW'
-    });
-  }
-
   render() {
 
     const { isFollowing } = this.props.user;
@@ -25,7 +19,7 @@ class Biography extends Component {
         </div>
         <div className="biography__details">
           <h2 className="biography__details__username">{ username }</h2>
-          <FollowButton following={ isFollowing } onClick={ this.toggleFollow.bind(this) } />
+          <FollowButton following={ isFollowing } onClick={ this.props.toggleFollow } />
           <p className="biography__details__description">Preact / Redux application using the Instagram API</p>
           <p className="biography__details__description">
             <strong>{ firstname } { lastname }</strong> - { description } - <a href="https://www.endaquigley.com" target="_blank">www.endaquigley.com</a>
@@ -34,13 +28,20 @@ class Biography extends Component {
       </div>
     );
   }
-
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.user
   }
 }
 
-export default connect(mapStateToProps)(Biography);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleFollow: () => {
+      dispatch(toggleFollow());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Biography);

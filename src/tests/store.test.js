@@ -1,34 +1,83 @@
 import store from '../store';
 import deepFreeze from 'deep-freeze';
 
-it('should toggle isFollowing boolean', () => {
+describe('user actions', () => {
 
-  const stateBefore = store.getState();
-  deepFreeze(stateBefore);
+  it('should toggle "isFollowing" boolean', () => {
 
-  store.dispatch({
-    type: 'TOGGLE_FOLLOW'
+    const stateOne = store.getState();
+    deepFreeze(stateOne);
+
+    store.dispatch({
+      type: 'TOGGLE_FOLLOW'
+    });
+
+    const stateTwo = store.getState();
+    deepFreeze(stateTwo);
+
+    store.dispatch({
+      type: 'TOGGLE_FOLLOW'
+    });
+
+    const stateThree = store.getState();
+    deepFreeze(stateThree);
+
+    expect(stateOne.user.isFollowing).not.toBe(stateTwo.user.isFollowing);
+    expect(stateTwo.user.isFollowing).not.toBe(stateThree.user.isFollowing);
+
   });
-
-  const stateEnd = store.getState();
-  deepFreeze(stateEnd);
-
-  expect(stateBefore.user.isFollowing).not.toBe(stateEnd.user.isFollowing);
 
 });
 
-it('should load 9 new images', () => {
+describe('gallery actions', () => {
 
-  const stateBefore = store.getState();
-  deepFreeze(stateBefore);
+  it('should set "isLoading" to true when pending', () => {
 
-  store.dispatch({
-    type: 'LOAD_MORE'
+    const stateBefore = store.getState();
+    deepFreeze(stateBefore);
+
+    store.dispatch({
+      type: 'LOAD_MORE_PENDING'
+    });
+
+    const stateAfter = store.getState();
+    deepFreeze(stateAfter);
+
+    expect(stateAfter.gallery.isLoading).toBe(true);
+
   });
 
-  const stateAfter = store.getState();
-  deepFreeze(stateAfter);
+  it('should set "isLoading" to false when fulfilled', () => {
 
-  expect(stateAfter.gallery.images.length).toBe(stateBefore.gallery.images.length + 9);
+    const stateBefore = store.getState();
+    deepFreeze(stateBefore);
+
+    store.dispatch({
+      type: 'LOAD_MORE_FULFILLED'
+    });
+
+    const stateAfter = store.getState();
+    deepFreeze(stateAfter);
+
+    expect(stateAfter.gallery.isLoading).toBe(false);
+
+  });
+
+
+    it('should add 9 new objects to the images array once fulfilled', () => {
+      
+      const stateBefore = store.getState();
+      deepFreeze(stateBefore);
+
+      store.dispatch({
+        type: 'LOAD_MORE_FULFILLED'
+      });
+
+      const stateAfter = store.getState();
+      deepFreeze(stateAfter);
+
+      expect(stateAfter.gallery.images.length).toBe(stateBefore.gallery.images.length + 9);
+
+    });
 
 });

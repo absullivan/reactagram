@@ -1,5 +1,5 @@
-import { createStore } from 'redux';
-import { combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 const userDefaults = {
   profile: {
@@ -45,21 +45,29 @@ const galleryDefaults = {
     { url: 'images/avatar.jpg' },
     { url: 'images/avatar.jpg' },
     { url: 'images/avatar.jpg' }
-  ]
+  ],
+  isLoading: false
 }
 
 const gallery = (state = galleryDefaults, action) => {
 
   switch (action.type) {
 
-    case 'LOAD_MORE':
+    case 'LOAD_MORE_PENDING':
 
       return Object.assign({}, state, {
-        images: [
-          ...state.images,
-          ...galleryDefaults.images
-        ]
+        isLoading: true
       });
+
+      case 'LOAD_MORE_FULFILLED':
+
+        return Object.assign({}, state, {
+          images: [
+            ...state.images,
+            ...galleryDefaults.images
+          ],
+          isLoading: false
+        });
 
     default: return state;
 
@@ -67,7 +75,12 @@ const gallery = (state = galleryDefaults, action) => {
 
 }
 
-const reducer = combineReducers({ user, gallery });
-const store = createStore(reducer);
+const reducers = combineReducers({ user, gallery });
+const middleware = applyMiddleware(thunk);
+
+const store = createStore(
+  reducers,
+  middleware
+);
 
 export default store;

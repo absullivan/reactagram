@@ -1,21 +1,15 @@
 import { h, Component } from 'preact';
 import { connect } from 'preact-redux';
+import { loadMore } from '../actions';
 import Button from './Button';
 import SquareImage from './SquareImage';
 import '../css/gallery.css';
 
 /** @jsx h */
 class Gallery extends Component {
-
-  loadMore() {
-    this.props.dispatch({
-      type: 'LOAD_MORE'
-    });
-  }
-
   render() {
 
-    const { images } = this.props.gallery;
+    const { images, isLoading } = this.props.gallery;
 
     const mediaElements = images.map(function(item, index) {
       return (
@@ -27,23 +21,32 @@ class Gallery extends Component {
       );
     });
 
+    const buttonText = (isLoading ? 'Loading...' : 'Load More');
+
     return (
       <div className="gallery">
         <div className="gallery__items">
           { mediaElements }
         </div>
-        <Button type="round" text="Load More" onClick={ this.loadMore.bind(this) } />
+        <Button type="round" text={ buttonText } disabled={ isLoading } onClick={ this.props.loadMore } />
       </div>
     );
 
   }
-
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     gallery: state.gallery
   }
 }
 
-export default connect(mapStateToProps)(Gallery);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadMore: () => {
+      dispatch(loadMore());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);

@@ -10,7 +10,13 @@ class Button extends Component {
       { 'standard-button--round' : this.props.type === 'round' }
     );
     return (
-      <input type="button" className={ classes } value={ this.props.text } onClick={ this.props.onClick } />
+      <input
+        type="button"
+        className={ classes }
+        value={ this.props.text }
+        onClick={ this.props.onClick }
+        disabled={ this.props.disabled }
+      />
     );
   }
 

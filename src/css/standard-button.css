@@ -11,7 +11,7 @@
   border: 0.15rem solid #4090DB;
 }
 
-.standard-button:hover {
+.standard-button:not(:disabled):hover {
   color: #2D6599;
   border-color: #2D6599;
 }
