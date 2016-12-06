@@ -1,10 +1,10 @@
-const loadMorePending = () => {
+export const loadMorePending = () => {
   return {
     type: 'LOAD_MORE_PENDING'
   }
 }
 
-const loadMoreFulfilled = () => {
+export const loadMoreFulfilled = () => {
   return {
     type: 'LOAD_MORE_FULFILLED'
   }

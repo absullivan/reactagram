@@ -1,5 +1,6 @@
 import store from '../store';
 import deepFreeze from 'deep-freeze';
+import { toggleFollow, loadMorePending, loadMoreFulfilled } from '../actions';
 
 describe('user actions', () => {
 
@@ -8,16 +9,12 @@ describe('user actions', () => {
     const stateOne = store.getState();
     deepFreeze(stateOne);
 
-    store.dispatch({
-      type: 'TOGGLE_FOLLOW'
-    });
+    store.dispatch(toggleFollow());
 
     const stateTwo = store.getState();
     deepFreeze(stateTwo);
 
-    store.dispatch({
-      type: 'TOGGLE_FOLLOW'
-    });
+    store.dispatch(toggleFollow());
 
     const stateThree = store.getState();
     deepFreeze(stateThree);
@@ -36,9 +33,7 @@ describe('gallery actions', () => {
     const stateBefore = store.getState();
     deepFreeze(stateBefore);
 
-    store.dispatch({
-      type: 'LOAD_MORE_PENDING'
-    });
+    store.dispatch(loadMorePending());
 
     const stateAfter = store.getState();
     deepFreeze(stateAfter);
@@ -52,9 +47,7 @@ describe('gallery actions', () => {
     const stateBefore = store.getState();
     deepFreeze(stateBefore);
 
-    store.dispatch({
-      type: 'LOAD_MORE_FULFILLED'
-    });
+    store.dispatch(loadMoreFulfilled());
 
     const stateAfter = store.getState();
     deepFreeze(stateAfter);
@@ -68,9 +61,7 @@ describe('gallery actions', () => {
     const stateBefore = store.getState();
     deepFreeze(stateBefore);
 
-    store.dispatch({
-      type: 'LOAD_MORE_FULFILLED'
-    });
+    store.dispatch(loadMoreFulfilled());
 
     const stateAfter = store.getState();
     deepFreeze(stateAfter);
