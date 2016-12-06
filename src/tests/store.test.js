@@ -63,21 +63,20 @@ describe('gallery actions', () => {
 
   });
 
+  it('should add 9 new objects to the images array once fulfilled', () => {
 
-    it('should add 9 new objects to the images array once fulfilled', () => {
-      
-      const stateBefore = store.getState();
-      deepFreeze(stateBefore);
+    const stateBefore = store.getState();
+    deepFreeze(stateBefore);
 
-      store.dispatch({
-        type: 'LOAD_MORE_FULFILLED'
-      });
-
-      const stateAfter = store.getState();
-      deepFreeze(stateAfter);
-
-      expect(stateAfter.gallery.images.length).toBe(stateBefore.gallery.images.length + 9);
-
+    store.dispatch({
+      type: 'LOAD_MORE_FULFILLED'
     });
+
+    const stateAfter = store.getState();
+    deepFreeze(stateAfter);
+
+    expect(stateAfter.gallery.images.length).toBe(stateBefore.gallery.images.length + 9);
+
+  });
 
 });

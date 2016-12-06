@@ -59,15 +59,15 @@ const gallery = (state = galleryDefaults, action) => {
         isLoading: true
       });
 
-      case 'LOAD_MORE_FULFILLED':
+    case 'LOAD_MORE_FULFILLED':
 
-        return Object.assign({}, state, {
-          images: [
-            ...state.images,
-            ...galleryDefaults.images
-          ],
-          isLoading: false
-        });
+      return Object.assign({}, state, {
+        images: [
+          ...state.images,
+          ...galleryDefaults.images
+        ],
+        isLoading: false
+      });
 
     default: return state;
 
