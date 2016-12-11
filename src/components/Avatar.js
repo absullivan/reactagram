@@ -1,19 +1,18 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import classNames from 'classnames';
 import '../css/avatar.css';
 
 /** @jsx h */
-class Avatar extends Component {
+const Avatar = ({ src, size }) => {
 
-  render() {
-    const classes = classNames('avatar',
-      { 'avatar--small': this.props.size === 'small' },
-      { 'avatar--large': this.props.size === 'large' }
-    );
-    return (
-      <img className={ classes } src={ this.props.src } alt="avatar" />
-    );
-  }
+  const classes = classNames('avatar',
+    { 'avatar--small': size === 'small' },
+    { 'avatar--large': size === 'large' }
+  );
+
+  return (
+    <img className={ classes } src={ src } alt="avatar" />
+  );
 
 }
 

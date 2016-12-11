@@ -1,25 +1,17 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import classNames from 'classnames';
 import '../css/standard-button.css';
 
 /** @jsx h */
-class Button extends Component {
+const Button = ({ type, text, onClick, disabled }) => {
 
-  render() {
-    const classes = classNames('standard-button',
-      { 'standard-button--round' : this.props.type === 'round' }
-    );
-    return (
-      <input
-        type="button"
-        className={ classes }
-        value={ this.props.text }
-        onClick={ this.props.onClick }
-        disabled={ this.props.disabled }
-      />
-    );
-  }
+  const classes = classNames('standard-button',
+    { 'standard-button--round' : type === 'round' }
+  );
 
+  return (
+    <input type="button" className={ classes } value={ text } onClick={ onClick } disabled={ disabled } />
+  );
 }
 
 Button.defaultProps = {

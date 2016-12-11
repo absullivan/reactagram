@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import { connect } from 'preact-redux';
 import { loadMore } from '../actions';
 import Button from './Button';
@@ -6,33 +6,29 @@ import SquareImage from './SquareImage';
 import '../css/gallery.css';
 
 /** @jsx h */
-class Gallery extends Component {
-  render() {
+const Gallery = ({ gallery: { images, isLoading }, loadMore }) => {
 
-    const { images, isLoading } = this.props.gallery;
-
-    const mediaElements = images.map(function(item, index) {
-      return (
-        <div key={ index } className="gallery__item">
-          <a href={ item.url } target="_blank">
-            <SquareImage src={ item.url } />
-          </a>
-        </div>
-      );
-    });
-
-    const buttonText = (isLoading ? 'Loading...' : 'Load More');
-
+  const mediaElements = images.map(function(item, index) {
     return (
-      <div className="gallery">
-        <div className="gallery__items">
-          { mediaElements }
-        </div>
-        <Button type="round" text={ buttonText } disabled={ isLoading } onClick={ this.props.loadMore } />
+      <div key={ index } className="gallery__item">
+        <a href={ item.url } target="_blank">
+          <SquareImage src={ item.url } />
+        </a>
       </div>
     );
+  });
 
-  }
+  const buttonText = (isLoading ? 'Loading...' : 'Load More');
+
+  return (
+    <div className="gallery">
+      <div className="gallery__items">
+        { mediaElements }
+      </div>
+      <Button type="round" text={ buttonText } disabled={ isLoading } onClick={ loadMore } />
+    </div>
+  );
+
 }
 
 const mapStateToProps = (state) => {
