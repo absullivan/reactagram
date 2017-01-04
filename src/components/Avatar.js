@@ -11,7 +11,7 @@ const Avatar = ({ src, size }) => {
   );
 
   return (
-    <img className={ classes } src={ src } alt="avatar" />
+    <img class={ classes } src={ src } alt="avatar" />
   );
 
 }
