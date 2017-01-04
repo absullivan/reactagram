@@ -6,7 +6,7 @@ import Footer from './Footer';
 /** @jsx h */
 const Application = () => {
   return (
-    <div className="application">
+    <div class="application">
       <Biography />
       <Gallery />
       <Footer />

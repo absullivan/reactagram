@@ -10,7 +10,7 @@ const Gallery = ({ gallery: { images, isLoading }, loadMore }) => {
 
   const mediaElements = images.map(function(item, index) {
     return (
-      <div key={ index } className="gallery__item">
+      <div key={ index } class="gallery__item">
         <a href={ item.url } target="_blank">
           <SquareImage src={ item.url } />
         </a>
@@ -21,8 +21,8 @@ const Gallery = ({ gallery: { images, isLoading }, loadMore }) => {
   const buttonText = (isLoading ? 'Loading...' : 'Load More');
 
   return (
-    <div className="gallery">
-      <div className="gallery__items">
+    <div class="gallery">
+      <div class="gallery__items">
         { mediaElements }
       </div>
       <Button type="round" text={ buttonText } disabled={ isLoading } onClick={ loadMore } />

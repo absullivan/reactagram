@@ -10,7 +10,7 @@ const Button = ({ type, text, onClick, disabled }) => {
   );
 
   return (
-    <input type="button" className={ classes } value={ text } onClick={ onClick } disabled={ disabled } />
+    <input type="button" class={ classes } value={ text } onClick={ onClick } disabled={ disabled } />
   );
 }
 
