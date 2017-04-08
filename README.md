@@ -2,7 +2,7 @@
 
 > Preact / Redux application using the Instagram API
 
-https://www.endaquigley.com/sandbox/reactagram
+https://enda.ie/sandbox/reactagram
 
 ## Getting Started
 
