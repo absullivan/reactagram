@@ -20,7 +20,7 @@ const Biography = ({ user: { isFollowing, profile }, toggleFollow }) => {
         <FollowButton following={ isFollowing } onClick={ toggleFollow } />
         <p class="biography__details__description">Preact / Redux application using the Instagram API</p>
         <p class="biography__details__description">
-          <strong>{ firstname } { lastname }</strong> - { description } - <a href="https://www.endaquigley.com" target="_blank">www.endaquigley.com</a>
+          <strong>{ firstname } { lastname }</strong> - { description } - <a href="https://enda.ie" target="_blank">enda.ie</a>
         </p>
       </div>
     </div>
