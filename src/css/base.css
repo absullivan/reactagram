@@ -15,13 +15,9 @@ html {
   font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-body {
-  min-width: 750px;
-}
-
 .application {
   margin: 0 auto;
   padding: 20px;
-  min-width: 320px;
+  min-width: 620px;
   max-width: 960px;
 }
