@@ -3,11 +3,11 @@ import thunk from 'redux-thunk';
 
 const userDefaults = {
   profile: {
-    firstname: 'Enda',
-    lastname: 'Quigley',
-    username: 'endaquigley',
+    firstname: 'Andrew',
+    lastname: 'Sullivan',
+    username: 'ab.sullivan',
     avatar: 'images/avatar.jpg',
-    description: 'Frontend / UI Developer, Dublin'
+    description: 'Vermont'
   },
   isFollowing: (window.localStorage ? (JSON.parse(localStorage.getItem('following')) || false) : false)
 }
