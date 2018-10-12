@@ -18,9 +18,9 @@ const Biography = ({ user: { isFollowing, profile }, toggleFollow }) => {
       <div class="biography__details">
         <h2 class="biography__details__username">{ username }</h2>
         <FollowButton following={ isFollowing } onClick={ toggleFollow } />
-        <p class="biography__details__description">Preact / Redux application using the Instagram API</p>
+        <p class="biography__details__description">A Clone of Reactagram</p>
         <p class="biography__details__description">
-          <strong>{ firstname } { lastname }</strong> - { description } - <a href="https://enda.ie" target="_blank">enda.ie</a>
+          <strong>{ firstname } { lastname }</strong> - { description } - <a href="https://absullivan.cozycloud.cc/public/blog/" target="_blank">https://absullivan.cozycloud.cc/public/blog/</a>
         </p>
       </div>
     </div>
